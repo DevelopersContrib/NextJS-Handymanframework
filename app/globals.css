@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap');
 
 @tailwind components;
 @tailwind utilities;
+
+body{
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+h1,.h1,
+h2,.h2,
+h3,.h3,
+h4,.h4,
+h5,.h5,
+h6,.h6{
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.custom-tab-nav li:last-child{
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+.custom-tab-nav li a:hover{
+  background-color: #fafafa;
+}
+
+.custom-tab-nav .active{
+  @apply tw-bg-[#D8D8D8] tw-shadow-[0_0_3px_rgba(0,0,0,0.35)_inset] hover:tw-bg-[#D8D8D8];
+}
