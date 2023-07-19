@@ -22,7 +22,7 @@ const HeaderForm = ({ background }) => {
                       <option value="3">Three</option>
                     </select>
                     <input type="text" className="form-control" placeholder="Zip" />
-                    <button class="btn btn-primary" type="button">Go!</button>
+                    <button className="btn btn-primary" type="button">Go!</button>
                   </div>
                 </div>
               </div>
@@ -40,7 +40,7 @@ const HeaderForm = ({ background }) => {
                       <option value="3">Three</option>
                     </select>
                     <input type="text" className="form-control" placeholder="Ask" />
-                    <button class="btn btn-primary" type="button">Go!</button>
+                    <button className="btn btn-primary" type="button">Go!</button>
                   </div>
                 </div>
               </div>
