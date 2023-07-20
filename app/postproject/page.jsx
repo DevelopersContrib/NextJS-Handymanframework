@@ -1,5 +1,6 @@
 import Navigation from "@/components/includes/Navigation"
 import Footer from "@/components/includes/Footer"
+import PostForm from '@/components/postproject/Form'
 
 const page = () => {
   const background = 'https://cdn.vnoc.com/background/bg-handyman1.png';
@@ -16,6 +17,23 @@ const page = () => {
             <div className="row">
               <div className="col-xl-12">
                 <h1>Post a Project</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="tw-py-12">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-8">
+              <PostForm />
+            </div>
+            <div className="col-xl-4">
+              <div className="alert alert-info">
+                <strong>Dear Clients,</strong> <br />
+                <p>
+                First you will need to fill out this form, describing what needs to be done. Once your Project is approved and posted on the site, relevant Business people will be alerted. You&apos;ll receive email alerts when your Project starts getting interest and you&apos;ll then compare Contractor by reviewing profiles, work history, qualifications and customer reviews.
+                </p>
               </div>
             </div>
           </div>

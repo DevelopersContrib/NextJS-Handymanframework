@@ -39,3 +39,16 @@ h6,.h6{
 	background: linear-gradient(to bottom,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
+
+.col-form-label .required{
+  position: relative;
+  padding-right: 10px;
+}
+
+.col-form-label .required::after{
+  content: "*";
+  position: absolute;
+  color: #d43f3a;
+  font-size: 12px;
+  right: 0;
+}

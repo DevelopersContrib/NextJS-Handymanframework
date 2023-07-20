@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const Navigation = ({bgNavbar}) => {
   return (
-    <Navbar fixed="top" expand="lg" data-bs-theme="dark" className={`tw-bg-[rgba(0,0,0,0.5)] ${bgNavbar}`}>
+    <Navbar fixed="top" expand="lg" data-bs-theme="dark" className={`${bgNavbar}`}>
       <div className='container-fluid'>
           <Navbar.Brand href="#home">
               Javapoint.com

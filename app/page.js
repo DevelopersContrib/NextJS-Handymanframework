@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <>
-      <Navigation />
+      <Navigation bgNavbar='tw-bg-[rgba(0,0,0,0.5)]' />
       <HeaderForm background={background} projectTypes={handymanConfigs.data.projectTypes} />
       <section className='tw-py-24 tw-bg-white'>
         <div className="container">
