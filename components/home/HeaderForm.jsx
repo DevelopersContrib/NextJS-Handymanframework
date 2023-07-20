@@ -1,49 +1,73 @@
+"use client";
+import { redirect } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { FaFax, FaCircleInfo } from "react-icons/fa6";
 
-const HeaderForm = ({ background }) => {
+const HeaderForm = ({ background, projectTypes }) => {
+  const router = useRouter();
+  const [option, setOption] = useState(1);
+
+  const handleOption = (e, opt) => {
+    e.preventDefault();
+    setOption(opt);
+  };
+
+  const handleClickGo = () => {
+    if (option === 2) {
+      console.log("im here");
+      router.push("https://handyman.com/");
+      // let location = ;
+
+      // console.log(location);
+      // window.href.location = location;
+    } else {
+      console.log("/post");
+    }
+  };
+
+  useEffect(() => {}, []);
   return (
     <>
-      <div className="tw-pt-24 lg:tw-min-h-[600px] tw-bg-cover tw-bg-center tw-relative tw-flex tw-w-full tw-items-center tw-flex-col" style={{ backgroundImage: `url('${background}')` }}>
+      <div
+        className="tw-pt-24 lg:tw-min-h-[600px] tw-bg-cover tw-bg-center tw-relative tw-flex tw-w-full tw-items-center tw-flex-col"
+        style={{ backgroundImage: `url('${background}')` }}
+      >
         <div className="tw-bg-[rgba(17,17,17,0.45)] tw-absolute tw-left-0 tw-top-0 tw-bottom-0 tw-right-0"></div>
         <div className="container text-center tw-relative tw-text-white tw-flex tw-h-full tw-flex-1">
           <div className="row tw-w-full">
             <div className="col-xl-8 offset-lg-2 tw-mb-5">
-              {/* Start:: Estimate Form */}
+              {/* Start:: Form */}
               <div className="tw-mt-12 ">
                 <h1 className="text-center tw-text-7xl tw-font-bold tw-my-5">
-                  Get an Estimate!
+                  {option === 1 ? "Get an estimate!" : "Ask an expert!"}
                 </h1>
                 <div className="tw-bg-[rgba(0,0,0,.25)] tw-p-5 tw-rounded-md">
                   <div className="input-group input-group-lg">
                     <select className="form-select">
-                      <option defaultValue>Project Type...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option key={0} value="0"></option>
+                      {projectTypes.map((type) => (
+                        <option key={type.projectTypeId} value={type.name}>
+                          {type.name}
+                        </option>
+                      ))}
                     </select>
-                    <input type="text" className="form-control" placeholder="Zip" />
-                    <button className="btn btn-primary" type="button">Go!</button>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder={option === 1 ? "Zip" : "Question"}
+                    />
+                    <button
+                      className="btn btn-primary"
+                      type="button"
+                      onClick={handleClickGo}
+                    >
+                      Go!
+                    </button>
                   </div>
                 </div>
               </div>
-              {/* Start:: Expert Form */}
-              <div className="tw-mt-12 tw-hidden">
-                <h1 className="text-center tw-text-7xl tw-font-bold tw-my-5">
-                Ask an Expert
-                </h1>
-                <div className="tw-bg-[rgba(0,0,0,.25)] tw-p-5 tw-rounded-md">
-                  <div className="input-group input-group-lg">
-                    <select className="form-select">
-                      <option defaultValue>Category...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                    <input type="text" className="form-control" placeholder="Ask" />
-                    <button className="btn btn-primary" type="button">Go!</button>
-                  </div>
-                </div>
-              </div>
+              {/* End:: Form */}
             </div>
           </div>
         </div>
@@ -52,7 +76,15 @@ const HeaderForm = ({ background }) => {
             <div className="col-xl-12 text-center">
               <ul className="list-inline tw-bg-[#F1F1F1] tw-inline-flex tw-mx-auto tw-px-[1rem_!important] mb-0 tw-rounded-t-md custom-tab-nav">
                 <li className="list-inline-item">
-                  <a href="#" className='active tw-inline-flex tw-uppercase tw-flex-col tw-text-[#464646] tw-font-bold tw-no-underline tw-p-4'>
+                  <a
+                    href="#"
+                    className={
+                      option == 1
+                        ? "active tw-inline-flex tw-uppercase tw-flex-col tw-text-[#464646] tw-font-bold tw-no-underline tw-p-4"
+                        : "tw-inline-flex tw-uppercase tw-flex-col tw-text-[#464646] tw-font-bold tw-no-underline tw-p-4"
+                    }
+                    onClick={(e) => handleOption(e, 1)}
+                  >
                     <span>
                       <FaFax />
                     </span>
@@ -60,7 +92,15 @@ const HeaderForm = ({ background }) => {
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#" className='tw-inline-flex tw-uppercase tw-flex-col tw-text-[#464646] tw-font-bold tw-no-underline tw-p-4'>
+                  <a
+                    href="#"
+                    className={
+                      option != 1
+                        ? "active tw-inline-flex tw-uppercase tw-flex-col tw-text-[#464646] tw-font-bold tw-no-underline tw-p-4"
+                        : "tw-inline-flex tw-uppercase tw-flex-col tw-text-[#464646] tw-font-bold tw-no-underline tw-p-4"
+                    }
+                    onClick={(e) => handleOption(e, 2)}
+                  >
                     <span>
                       <FaCircleInfo />
                     </span>
@@ -73,7 +113,7 @@ const HeaderForm = ({ background }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HeaderForm
+export default HeaderForm;

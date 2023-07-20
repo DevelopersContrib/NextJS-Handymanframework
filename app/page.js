@@ -1,18 +1,23 @@
 import Image from 'next/image'
+
 import HeaderForm from '@/components/home/HeaderForm'
 import Navigation from '@/components/includes/Navigation';
 import Footer from '@/components/includes/Footer';
+import { getProjectTypes } from "@/lib/data";
 
-export default function Home() {
+export default async function Home() {
   const background = 'https://cdn.vnoc.com/background/bg-handyman1.png';
   const domain ='javapoint.com';
   const fb_url = 'facebook.com';
   const twitter_url = 'twitter.com';
   const linkedin_url = 'linkedin.com';
+
+  const handymanConfigs = await getProjectTypes();
+
   return (
     <>
       <Navigation />
-      <HeaderForm background={background} />
+      <HeaderForm background={background} projectTypes={handymanConfigs.data.projectTypes} />
       <section className='tw-py-24 tw-bg-white'>
         <div className="container">
           <div className="row">
