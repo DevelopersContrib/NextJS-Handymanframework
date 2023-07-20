@@ -16,7 +16,7 @@ const HeaderForm = ({ background }) => {
                 <div className="tw-bg-[rgba(0,0,0,.25)] tw-p-5 tw-rounded-md">
                   <div className="input-group input-group-lg">
                     <select className="form-select">
-                      <option selected>Project Type...</option>
+                      <option defaultValue>Project Type...</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
@@ -34,7 +34,7 @@ const HeaderForm = ({ background }) => {
                 <div className="tw-bg-[rgba(0,0,0,.25)] tw-p-5 tw-rounded-md">
                   <div className="input-group input-group-lg">
                     <select className="form-select">
-                      <option selected>Category...</option>
+                      <option defaultValue>Category...</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>

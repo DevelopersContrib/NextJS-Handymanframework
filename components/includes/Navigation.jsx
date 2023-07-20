@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-const Navigation = () => {
+const Navigation = ({bgNavbar}) => {
   return (
-    <Navbar fixed="top" expand="lg" data-bs-theme="dark" className="tw-bg-[rgba(0,0,0,0.5)]">
+    <Navbar fixed="top" expand="lg" data-bs-theme="dark" className={`tw-bg-[rgba(0,0,0,0.5)] ${bgNavbar}`}>
       <div className='container-fluid'>
           <Navbar.Brand href="#home">
               Javapoint.com
