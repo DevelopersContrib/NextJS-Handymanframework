@@ -7,7 +7,7 @@ export const GET = async (request) => {
 
     console.log(res.data.data)
 
-    return new Response(JSON.stringify({res: res.data}), { status: 201 })
+    return new Response(JSON.stringify(res.data), { status: 201 })
   } catch (error) {
     console.log("Error: ", error);
   }

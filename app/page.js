@@ -22,7 +22,9 @@ const Home = () => {
       method: 'GET'
     });
 
-    console.log('callHandymanApi:',res.data.projectTypes)
+    const response = await res.json()
+
+    console.log('callHandymanApi:',response.data.projectTypes)
   }
 
   useEffect(() => {
