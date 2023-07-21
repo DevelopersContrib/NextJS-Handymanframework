@@ -1,23 +1,40 @@
-import Image from 'next/image'
+"use client";
 
 import HeaderForm from '@/components/home/HeaderForm'
 import Navigation from '@/components/includes/Navigation';
 import Footer from '@/components/includes/Footer';
-import { getProjectTypes } from "@/lib/data";
 
-export default async function Home() {
+import { useEffect, useContext } from 'react';
+
+import { HandymanContext } from './context/handyman/store';
+
+const Home = () => {
   const background = 'https://cdn.vnoc.com/background/bg-handyman1.png';
   const domain ='javapoint.com';
   const fb_url = 'facebook.com';
   const twitter_url = 'twitter.com';
   const linkedin_url = 'linkedin.com';
 
-  const handymanConfigs = await getProjectTypes();
+  const { handymanConfigs, setHandymanConfigs } = useContext(HandymanContext);
+
+  const callHandymanApi = async () => {
+    const res = await fetch('/api/handyman',{
+      method: 'GET'
+    });
+
+    console.log('callHandymanApi:',res.data.projectTypes)
+  }
+
+  useEffect(() => {
+    callHandymanApi()
+    // setHandymanConfigs('stephen')
+    // console.log(handymanConfigs)
+  },[])
 
   return (
     <>
       <Navigation bgNavbar='tw-bg-[rgba(0,0,0,0.5)]' />
-      <HeaderForm background={background} projectTypes={handymanConfigs.data.projectTypes} />
+      <HeaderForm background={background} />
       <section className='tw-py-24 tw-bg-white'>
         <div className="container">
           <div className="row">
@@ -82,3 +99,5 @@ export default async function Home() {
     </>
   )
 }
+
+export default Home;

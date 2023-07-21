@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FaFax, FaCircleInfo } from "react-icons/fa6";
 
-const HeaderForm = ({ background, projectTypes }) => {
+const HeaderForm = ({ background }) => {
   const router = useRouter();
   const [option, setOption] = useState(1);
 
@@ -17,12 +17,8 @@ const HeaderForm = ({ background, projectTypes }) => {
     if (option === 2) {
       console.log("im here");
       router.push("https://handyman.com/");
-      // let location = ;
-
-      // console.log(location);
-      // window.href.location = location;
     } else {
-      console.log("/post");
+      console.log("/project/post");
     }
   };
 
@@ -46,11 +42,6 @@ const HeaderForm = ({ background, projectTypes }) => {
                   <div className="input-group input-group-lg">
                     <select className="form-select">
                       <option key={0} value="0"></option>
-                      {projectTypes.map((type) => (
-                        <option key={type.projectTypeId} value={type.name}>
-                          {type.name}
-                        </option>
-                      ))}
                     </select>
                     <input
                       type="text"
