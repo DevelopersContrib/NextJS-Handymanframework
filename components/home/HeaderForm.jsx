@@ -1,11 +1,13 @@
 "use client";
-import { redirect } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FaFax, FaCircleInfo } from "react-icons/fa6";
 
+import { HandymanContext } from "@/app/context/handyman/store";
+
 const HeaderForm = ({ background }) => {
   const router = useRouter();
+  const { handymanConfigs, setHandymanConfigs } = useContext(HandymanContext);
   const [option, setOption] = useState(1);
 
   const handleOption = (e, opt) => {
@@ -18,11 +20,12 @@ const HeaderForm = ({ background }) => {
       console.log("im here");
       router.push("https://handyman.com/");
     } else {
-      console.log("/project/post");
+      router.push("/project/post");
     }
   };
 
   useEffect(() => {}, []);
+
   return (
     <>
       <div
@@ -41,7 +44,13 @@ const HeaderForm = ({ background }) => {
                 <div className="tw-bg-[rgba(0,0,0,.25)] tw-p-5 tw-rounded-md">
                   <div className="input-group input-group-lg">
                     <select className="form-select">
-                      <option key={0} value="0"></option>
+                      <option value="0"></option>
+                      {handymanConfigs &&
+                        handymanConfigs.projectTypes.map((p) => (
+                          <option key={p.projectTypeId} value={p.projectTypeId}>
+                            {p.name}
+                          </option>
+                        ))}
                     </select>
                     <input
                       type="text"

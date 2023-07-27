@@ -17,20 +17,18 @@ const Home = () => {
 
   const { handymanConfigs, setHandymanConfigs } = useContext(HandymanContext);
 
-  const callHandymanApi = async () => {
+   const callHandymanApi = async () => {
     const res = await fetch('/api/handyman',{
       method: 'GET'
     });
 
-    const response = await res.json()
+    const result = await res.json()
 
-    console.log('callHandymanApi:',response.data.projectTypes)
+    setHandymanConfigs(result.data)
   }
 
   useEffect(() => {
     callHandymanApi()
-    // setHandymanConfigs('stephen')
-    // console.log(handymanConfigs)
   },[])
 
   return (
