@@ -8,6 +8,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
+  const [userData, setUserData] = useState({
+    userName: "",
+    email: "",
+  });
   const [error, setError] = useState(null);
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -26,7 +30,19 @@ const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
       .required("Enter your email address."),
   });
 
-  useEffect(() => {}, [data]);
+  const handleInputChange = (e) => {
+    console.log("im here");
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [e.target.name]: e.target.value,
+    }));
+
+    handleData(userData);
+  };
+
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
 
   return (
     <Formik
@@ -51,7 +67,12 @@ const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
                   <span className="required small">Public Username</span>
                 </label>
                 {/* Note:: To trigger error message add class "is-invalid" to the form tag */}
-                <Field name="userName" className="form-control" type="text" />
+                <Field
+                  name="userName"
+                  className="form-control"
+                  type="text"
+                  onChange={handleInputChange}
+                />
                 {formik.errors.userName && formik.touched.userName ? (
                   <ErrorMessage
                     name="userName"
@@ -70,12 +91,18 @@ const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
                   <span className="required small">Email Address</span>
                 </label>
                 {/* Note:: To trigger error message add class "is-invalid" to the form tag */}
-                <Field name="email" className="form-control" type="text" />
+                <Field
+                  name="email"
+                  className="form-control"
+                  type="text"
+                  onChange={handleInputChange}
+                />
                 {formik.errors.email && formik.touched.email ? (
                   <ErrorMessage
                     name="email"
                     component="small"
                     className="text-danger"
+                    onChange={handleInputChange}
                   />
                 ) : null}
                 {apiErrors.email && (
