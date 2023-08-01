@@ -8,11 +8,32 @@ import { HandymanContext } from "@/app/context/handyman/store";
 const HeaderForm = ({ background }) => {
   const router = useRouter();
   const { handymanConfigs, setHandymanConfigs } = useContext(HandymanContext);
+  const { urlQuery, setUrlQuery } = useState({
+    projectType: "",
+    zip: "",
+  });
   const [option, setOption] = useState(1);
 
   const handleOption = (e, opt) => {
     e.preventDefault();
     setOption(opt);
+  };
+
+  const handleProjectTypeChange = (e) => {
+    setUrlQuery((prevUrlQuery) => ({
+      ...prevUrlQuery,
+      projectType: e.target.value,
+    }));
+  };
+
+  const handleInputChange = (e) => {
+    console.log(option);
+    if (option === 1) {
+      setUrlQuery((prevUrlQuery) => ({
+        ...prevUrlQuery,
+        zip: e.target.value,
+      }));
+    }
   };
 
   const handleClickGo = () => {
@@ -24,7 +45,9 @@ const HeaderForm = ({ background }) => {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(urlQuery);
+  }, [urlQuery]);
 
   return (
     <>
@@ -43,7 +66,10 @@ const HeaderForm = ({ background }) => {
                 </h1>
                 <div className="tw-bg-[rgba(0,0,0,.25)] tw-p-5 tw-rounded-md">
                   <div className="input-group input-group-lg">
-                    <select className="form-select">
+                    <select
+                      className="form-select"
+                      onChange={handleProjectTypeChange}
+                    >
                       <option value="0"></option>
                       {handymanConfigs &&
                         handymanConfigs.projectTypes.map((p) => (
@@ -56,6 +82,7 @@ const HeaderForm = ({ background }) => {
                       type="text"
                       className="form-control"
                       placeholder={option === 1 ? "Zip" : "Question"}
+                      onChange={handleInputChange}
                     />
                     <button
                       className="btn btn-primary"

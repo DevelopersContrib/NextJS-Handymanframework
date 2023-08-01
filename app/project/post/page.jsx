@@ -20,27 +20,53 @@ const page = () => {
   const { handymanConfigs } = useContext(HandymanContext);
 
   const [projectData, setProjectData] = useState({
-    projectTypeId: "",
-    zip: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    city: "",
-    address: "",
-    stateId: "",
-    projectStartDate: "",
-    projectStatus: "",
-    projectTimeFrame: "",
-    projectBudget: "",
-    projectDesc: "",
-    isProjectOwner: "0",
+    projectTypeId: "65",
+    zip: "80001",
+    firstName: "Stephen",
+    lastName: "Catacte",
+    phoneNumber: "123-456-7890",
+    city: "New York City",
+    address: "New York City",
+    stateId: "35",
+    projectStartDate: "2-Weeks",
+    projectStatus: "Planning and Budgeting",
+    projectTimeFrame: "Timing is Flexible",
+    projectBudget: "$2500 to $5000",
+    projectDesc: "This is a test",
+    isProjectOwner: "1",
   });
   const [userData, setUserData] = useState({
-    userName: "",
-    email: "",
+    userName: "teepin12",
+    email: "homer@mailinator.com",
     isAgreedToTermsAndCondition: [],
   });
+  // const [projectData, setProjectData] = useState({
+  //   projectTypeId: "",
+  //   zip: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   phoneNumber: "",
+  //   city: "",
+  //   address: "",
+  //   stateId: "",
+  //   projectStartDate: "",
+  //   projectStatus: "",
+  //   projectTimeFrame: "",
+  //   projectBudget: "",
+  //   projectDesc: "",
+  //   isProjectOwner: "0",
+  // });
+  // const [userData, setUserData] = useState({
+  //   userName: "",
+  //   email: "",
+  //   isAgreedToTermsAndCondition: [],
+  // });
   const [form, setForm] = useState("project");
+  const [apiErrors, setApiErrors] = useState({
+    email: "",
+    userName: "",
+  });
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleProjectData = (values) => {
     setProjectData(values);
@@ -49,7 +75,7 @@ const page = () => {
 
   const handleUserData = (values) => {
     setUserData(values);
-    saveProject();
+    checkIfAccountExists();
   };
 
   const toggleForms = (form) => {
@@ -57,18 +83,58 @@ const page = () => {
   };
 
   const saveProject = async () => {
+    const apiData = Object.assign(userData, projectData);
+
+    const res = await fetch("/api/handyman/save", {
+      method: "POST",
+      body: JSON.stringify(apiData),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      router.push("https://handyman.com/");
+    }
+
+    console.log(result);
+  };
+
+  const checkIfAccountExists = async () => {
+    setIsSaving(true);
+    setApiErrors({ email: "", userName: "" });
+
     const res = await fetch("/api/handyman/check", {
       method: "POST",
       body: JSON.stringify(userData),
     });
+    const result = await res.json();
+
+    if (!result.isAccountExists) {
+      saveProject();
+    } else {
+      if (result.email) {
+        setApiErrors((prevApiErrors) => ({
+          ...prevApiErrors,
+          email: result.email,
+        }));
+      }
+      if (result.userName) {
+        setApiErrors((prevApiErrors) => ({
+          ...prevApiErrors,
+          userName: result.userName,
+        }));
+      }
+    }
+
+    setIsSaving(false);
   };
 
   useEffect(() => {
     if (handymanConfigs == null) {
       router.push("/");
     }
-    console.log(projectData);
-    console.log(userData);
+    // console.log(projectData);
+    // console.log(userData);
   }, [projectData, userData]);
 
   return (
@@ -106,6 +172,8 @@ const page = () => {
                     data={userData}
                     handleData={handleUserData}
                     toggleForms={toggleForms}
+                    apiErrors={apiErrors}
+                    isSaving={isSaving}
                   />
                 )}
               </div>

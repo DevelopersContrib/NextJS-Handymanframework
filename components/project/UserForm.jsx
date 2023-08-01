@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const UserForm = ({ data, handleData, toggleForms }) => {
+const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
   const [error, setError] = useState(null);
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -26,7 +26,7 @@ const UserForm = ({ data, handleData, toggleForms }) => {
       .required("Enter your email address."),
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [data]);
 
   return (
     <Formik
@@ -37,7 +37,7 @@ const UserForm = ({ data, handleData, toggleForms }) => {
           setError("You must agree to our terms and condition.");
         } else {
           setError(null);
-          setTimeout(() => handleData(values), 0);
+          setTimeout(() => handleData(values), 500);
         }
       }}
       validateOnChange={true}
@@ -59,6 +59,9 @@ const UserForm = ({ data, handleData, toggleForms }) => {
                     className="text-danger"
                   />
                 ) : null}
+                {apiErrors.userName && (
+                  <small className="text-danger">{apiErrors.userName}</small>
+                )}
               </div>
             </div>
             <div className="row">
@@ -75,6 +78,9 @@ const UserForm = ({ data, handleData, toggleForms }) => {
                     className="text-danger"
                   />
                 ) : null}
+                {apiErrors.email && (
+                  <small className="text-danger">{apiErrors.email}</small>
+                )}
               </div>
             </div>
             <div className="row">
@@ -119,7 +125,7 @@ const UserForm = ({ data, handleData, toggleForms }) => {
                       <span className="tw-mr-2">
                         <FaEnvelope />
                       </span>
-                      Get Free Estimate
+                      {!isSaving ? "Get Free Estimate" : "Saving..."}
                     </button>
                   </div>
                 </div>

@@ -1,11 +1,19 @@
-import { FaTwitter, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faFacebookF,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
   const contri_link = "https://www.contrib.com/to/" + domain;
   const footer_text =
-    "Join our exclusive community of like minded people on " + domain + ".";
+    "is a proud venture of Global Ventures,LLC.Join our network of performance based companies using " +
+    domain +
+    ".";
   return (
     <>
       <footer className="tw-text-white">
@@ -61,6 +69,23 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       developer
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      href="/invest"
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      invest
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      href={contri_link}
+                      target="_blank"
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      contribute
+                    </a>
+                  </li>
                 </ul>
               </div>
               <div className="col-xl-3">
@@ -106,11 +131,6 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       privacy
                     </Link>
                   </li>
-                  {/* <li>
-                    <a href="#" className='tw-no-underline text-secondary tw-inline-block tw-capitalize'>
-                      unsubscribe
-                    </a>
-                  </li> */}
                 </ul>
               </div>
               <div className="col-xl-3">
@@ -130,6 +150,20 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       />
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="https://realtydao.com"
+                      className="tw-no-underline text-secondary tw-inline-block"
+                    >
+                      <Image
+                        src="https://cdn.vnoc.com/logos/logo-RealtyDAO-light-1.png"
+                        alt="realtydao.com"
+                        width={227}
+                        height={50}
+                        className="img-fluid"
+                      />
+                    </a>
+                  </li>
                 </ul>
                 <h3 className="tw-uppercase tw-text-2xl">socials</h3>
                 <ul className="list-inline">
@@ -138,7 +172,10 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       href={twitter_url}
                       className="tw-no-underline text-secondary tw-inline-block"
                     >
-                      <FaTwitter className="tw-w-8 tw-h-[2rem!important] text-secondary" />
+                      <FontAwesomeIcon
+                        icon={faTwitter}
+                        className="tw-w-8 tw-h-[2rem!important] text-secondary"
+                      />
                     </a>
                   </li>
                   <li className="list-inline-item">
@@ -146,7 +183,10 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       href={fb_url}
                       className="tw-no-underline text-secondary tw-inline-block"
                     >
-                      <FaFacebookF className="tw-w-8 tw-h-[2rem!important] text-secondary" />
+                      <FontAwesomeIcon
+                        icon={faFacebookF}
+                        className="tw-w-8 tw-h-[2rem!important] text-secondary"
+                      />
                     </a>
                   </li>
                   <li className="list-inline-item">
@@ -154,7 +194,10 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       href={linkedin_url}
                       className="tw-no-underline text-secondary tw-inline-block"
                     >
-                      <FaLinkedinIn className="tw-w-8 tw-h-[2rem!important] text-secondary" />
+                      <FontAwesomeIcon
+                        icon={faLinkedinIn}
+                        className="tw-w-8 tw-h-[2rem!important] text-secondary"
+                      />
                     </a>
                   </li>
                 </ul>
