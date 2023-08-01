@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
-  const [userData, setUserData] = useState({
-    userName: "",
-    email: "",
-  });
+const UserForm = ({ data, handleData, setUserData, toggleForms, apiErrors, isSaving }) => {
+  // const [userData, setUserData] = useState({
+  //   userName: "",
+  //   email: "",
+  // });
   const [error, setError] = useState(null);
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -32,21 +32,22 @@ const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
 
   const handleInputChange = (e) => {
     console.log("im here");
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      [e.target.name]: e.target.value,
-    }));
+    // setUserData((prevUserData) => ({
+    //   ...prevUserData,
+    //   [e.target.name]: e.target.value,
+    // }));
 
-    handleData(userData);
+    // handleData(userData);
+    setUserData({ ...data, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+  // useEffect(() => {
+  //   console.log(userData);
+  // }, [userData]);
 
   return (
     <Formik
-      initialValues={data}
+      // initialValues={data}
       validationSchema={schema}
       onSubmit={async (values, { setSubmitting }) => {
         if (values.isAgreedToTermsAndCondition.length < 1) {
@@ -72,6 +73,7 @@ const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
                   className="form-control"
                   type="text"
                   onChange={handleInputChange}
+                  value={data.userName}
                 />
                 {formik.errors.userName && formik.touched.userName ? (
                   <ErrorMessage
@@ -96,6 +98,7 @@ const UserForm = ({ data, handleData, toggleForms, apiErrors, isSaving }) => {
                   className="form-control"
                   type="text"
                   onChange={handleInputChange}
+                  value={data.email}
                 />
                 {formik.errors.email && formik.touched.email ? (
                   <ErrorMessage

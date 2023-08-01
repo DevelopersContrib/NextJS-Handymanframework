@@ -170,6 +170,7 @@ const page = () => {
                 ) : (
                   <UserForm
                     data={userData}
+                    setUserData={setUserData}
                     handleData={handleUserData}
                     toggleForms={toggleForms}
                     apiErrors={apiErrors}
