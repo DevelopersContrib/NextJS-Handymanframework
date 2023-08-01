@@ -8,11 +8,11 @@ import { HandymanContext } from "@/app/context/handyman/store";
 const HeaderForm = ({ background }) => {
   const router = useRouter();
   const { handymanConfigs, setHandymanConfigs } = useContext(HandymanContext);
-  const { urlQuery, setUrlQuery } = useState({
+  const [option, setOption] = useState(1);
+  const [data, setData] = useState({
     projectType: "",
     zip: "",
   });
-  const [option, setOption] = useState(1);
 
   const handleOption = (e, opt) => {
     e.preventDefault();
@@ -20,16 +20,15 @@ const HeaderForm = ({ background }) => {
   };
 
   const handleProjectTypeChange = (e) => {
-    setUrlQuery((prevUrlQuery) => ({
+    setData((prevUrlQuery) => ({
       ...prevUrlQuery,
       projectType: e.target.value,
     }));
   };
 
   const handleInputChange = (e) => {
-    console.log(option);
     if (option === 1) {
-      setUrlQuery((prevUrlQuery) => ({
+      setData((prevUrlQuery) => ({
         ...prevUrlQuery,
         zip: e.target.value,
       }));
@@ -41,13 +40,13 @@ const HeaderForm = ({ background }) => {
       console.log("im here");
       router.push("https://handyman.com/");
     } else {
-      router.push("/project/post");
+      router.push("/project/post?id=" + data.projectType + "&zip=" + data.zip);
     }
   };
 
   useEffect(() => {
-    console.log(urlQuery);
-  }, [urlQuery]);
+    console.log(data);
+  }, [data]);
 
   return (
     <>

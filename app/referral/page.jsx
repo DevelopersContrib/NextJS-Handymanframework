@@ -22,12 +22,12 @@ const page = async () => {
         adsenseClientId={c.data.adsenseClientId}
       />
       <ScriptLoader html={html} />
-      {/* <Footer
+      <Footer
         domain={domain}
         twitter_url={twitter_url}
         fb_url={twitter_url}
         linkedin_url={linkedin_url}
-      /> */}
+      />
     </>
   );
 };
