@@ -40,13 +40,13 @@ const HeaderForm = ({ background }) => {
       console.log("im here");
       router.push("https://handyman.com/");
     } else {
-      router.push("/project/post?id=" + data.projectType + "&zip=" + data.zip);
+      router.push(
+        "/project/post?project-type-id=" + data.projectType + "&zip=" + data.zip
+      );
     }
   };
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -84,11 +84,16 @@ const HeaderForm = ({ background }) => {
                       onChange={handleInputChange}
                     />
                     <button
-                      className="btn btn-primary"
+                      className={
+                        handymanConfigs === null
+                          ? "btn btn-primary disabled"
+                          : "btn btn-primary"
+                      }
                       type="button"
                       onClick={handleClickGo}
+                      disabled={handymanConfigs === null ? true : false}
                     >
-                      Go!
+                      {handymanConfigs === null ? "Loading..." : "Go!"}
                     </button>
                   </div>
                 </div>

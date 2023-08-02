@@ -5,8 +5,8 @@ import Footer from "@/components/includes/Footer";
 import ProjectForm from "@/components/project/ProjectForm";
 import UserForm from "@/components/project/UserForm";
 
-import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useContext, useEffect, useRef, useState } from "react";
 import { HandymanContext } from "@/app/context/handyman/store";
 
 const page = () => {
@@ -17,55 +17,52 @@ const page = () => {
   const linkedin_url = "linkedin.com";
 
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { handymanConfigs } = useContext(HandymanContext);
 
+  // const [projectData, setProjectData] = useState({
+  //   projectTypeId: "65",
+  //   zip: "80001",
+  //   firstName: "Stephen",
+  //   lastName: "Catacte",
+  //   phoneNumber: "123-456-7890",
+  //   city: "New York City",
+  //   address: "New York City",
+  //   stateId: "35",
+  //   projectStartDate: "2-Weeks",
+  //   projectStatus: "Planning and Budgeting",
+  //   projectTimeFrame: "Timing is Flexible",
+  //   projectBudget: "$2500 to $5000",
+  //   projectDesc: "This is a test",
+  //   isProjectOwner: "1",
+  // });
   const [projectData, setProjectData] = useState({
-    projectTypeId: "65",
-    zip: "80001",
-    firstName: "Stephen",
-    lastName: "Catacte",
-    phoneNumber: "123-456-7890",
-    city: "New York City",
-    address: "New York City",
-    stateId: "35",
-    projectStartDate: "2-Weeks",
-    projectStatus: "Planning and Budgeting",
-    projectTimeFrame: "Timing is Flexible",
-    projectBudget: "$2500 to $5000",
-    projectDesc: "This is a test",
-    isProjectOwner: "1",
+    projectTypeId: searchParams.get("project-type-id")
+      ? searchParams.get("project-type-id")
+      : "",
+    zip: searchParams.get("zip") ? searchParams.get("zip") : "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    city: "",
+    address: "",
+    stateId: "",
+    projectStartDate: "",
+    projectStatus: "",
+    projectTimeFrame: "",
+    projectBudget: "",
+    projectDesc: "",
+    isProjectOwner: "0",
   });
   const [userData, setUserData] = useState({
-    userName: "teepin12",
-    email: "homer@mailinator.com",
+    userName: "",
+    email: "",
     isAgreedToTermsAndCondition: [],
   });
-  // const [projectData, setProjectData] = useState({
-  //   projectTypeId: "",
-  //   zip: "",
-  //   firstName: "",
-  //   lastName: "",
-  //   phoneNumber: "",
-  //   city: "",
-  //   address: "",
-  //   stateId: "",
-  //   projectStartDate: "",
-  //   projectStatus: "",
-  //   projectTimeFrame: "",
-  //   projectBudget: "",
-  //   projectDesc: "",
-  //   isProjectOwner: "0",
-  // });
-  // const [userData, setUserData] = useState({
-  //   userName: "",
-  //   email: "",
-  //   isAgreedToTermsAndCondition: [],
-  // });
   const [form, setForm] = useState("project");
-  const [apiErrors, setApiErrors] = useState({
-    email: "",
-    userName: "",
-  });
+
+  const prevProjectData = useRef();
+  const prevUserData = useRef();
   const [isSaving, setIsSaving] = useState(false);
 
   const handleProjectData = (values) => {
@@ -75,7 +72,7 @@ const page = () => {
 
   const handleUserData = (values) => {
     setUserData(values);
-    checkIfAccountExists();
+    // checkIfAccountExists();
   };
 
   const toggleForms = (form) => {
@@ -84,6 +81,8 @@ const page = () => {
 
   const saveProject = async () => {
     const apiData = Object.assign(userData, projectData);
+
+    console.log("apiData", apiData);
 
     const res = await fetch("/api/handyman/save", {
       method: "POST",
@@ -94,47 +93,65 @@ const page = () => {
 
     if (result.success) {
       router.push("https://handyman.com/");
+      // alert("Saved!");
     }
 
     console.log(result);
   };
 
-  const checkIfAccountExists = async () => {
-    setIsSaving(true);
-    setApiErrors({ email: "", userName: "" });
+  // const checkIfAccountExists = async () => {
+  //   setIsSaving(true);
+  //   setApiErrors({ email: "", userName: "" });
 
-    const res = await fetch("/api/handyman/check", {
-      method: "POST",
-      body: JSON.stringify(userData),
-    });
-    const result = await res.json();
+  //   const res = await fetch("/api/handyman/check", {
+  //     method: "POST",
+  //     body: JSON.stringify(userData),
+  //   });
+  //   const result = await res.json();
 
-    if (!result.isAccountExists) {
-      saveProject();
-    } else {
-      if (result.email) {
-        setApiErrors((prevApiErrors) => ({
-          ...prevApiErrors,
-          email: result.email,
-        }));
-      }
-      if (result.userName) {
-        setApiErrors((prevApiErrors) => ({
-          ...prevApiErrors,
-          userName: result.userName,
-        }));
-      }
-    }
+  //   if (!result.isAccountExists) {
+  //     saveProject();
+  //   } else {
+  //     if (result.email) {
+  //       setApiErrors((prevApiErrors) => ({
+  //         ...prevApiErrors,
+  //         email: result.email,
+  //       }));
+  //     }
+  //     if (result.userName) {
+  //       setApiErrors((prevApiErrors) => ({
+  //         ...prevApiErrors,
+  //         userName: result.userName,
+  //       }));
+  //     }
+  //   }
 
-    setIsSaving(false);
-  };
+  //   setIsSaving(false);
+  // };
 
   useEffect(() => {
+    // prevProjectData.current = projectData;
+    // prevUserData.current = userData;
     if (handymanConfigs == null) {
       router.push("/");
     }
-    // console.log(projectData);
-    // console.log(userData);
+
+    if (userData.userName && userData.email) {
+      saveProject();
+    }
+
+    // if (prevProjectData.current !== projectData && prevUserData !== userData) {
+    //   console.log("Updating values.");
+    //   checkIfAccountExists();
+    // } else {
+    //   console.log("prevProjectData.current", prevProjectData.current);
+    //   console.log("projectData", projectData);
+    //   console.log("prevUserData.current", prevUserData.current);
+    //   console.log("userData", userData);
+    // }
+
+    console.log(projectData);
+    console.log(userData);
   }, [projectData, userData]);
 
   return (
@@ -170,11 +187,11 @@ const page = () => {
                 ) : (
                   <UserForm
                     data={userData}
-                    setUserData={setUserData}
                     handleData={handleUserData}
                     toggleForms={toggleForms}
-                    apiErrors={apiErrors}
+                    // apiErrors={apiErrors}
                     isSaving={isSaving}
+                    setIsSaving={setIsSaving}
                   />
                 )}
               </div>

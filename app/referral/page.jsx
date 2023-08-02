@@ -1,7 +1,7 @@
 import ScriptLoader from "@/components/ScriptLoader";
 import { getData, getDomain } from "@/lib/data";
 import HeaderWidget from "@/components/HeaderWidget";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 const page = async () => {
   const c = await getData();

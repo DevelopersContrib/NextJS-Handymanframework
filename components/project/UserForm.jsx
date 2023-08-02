@@ -7,15 +7,12 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const UserForm = ({ data, handleData, setUserData, toggleForms, apiErrors, isSaving }) => {
-  // const [userData, setUserData] = useState({
-  //   userName: "",
-  //   email: "",
-  // });
+const UserForm = ({ data, handleData, toggleForms, isSaving, setIsSaving }) => {
   const [error, setError] = useState(null);
-
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
+  const [apiErrors, setApiErrors] = useState({
+    email: "",
+    userName: "",
+  });
   const schema = Yup.object().shape({
     userName: Yup.string()
       .required("Username is required.")
@@ -30,31 +27,44 @@ const UserForm = ({ data, handleData, setUserData, toggleForms, apiErrors, isSav
       .required("Enter your email address."),
   });
 
-  const handleInputChange = (e) => {
-    console.log("im here");
-    // setUserData((prevUserData) => ({
-    //   ...prevUserData,
-    //   [e.target.name]: e.target.value,
-    // }));
-
-    // handleData(userData);
-    setUserData({ ...data, [e.target.name]: e.target.value });
+  const handleSubmitUserForm = async (values) => {
+    setIsSaving(true);
+    setApiErrors({ email: "", userName: "" });
+    const res = await fetch("/api/handyman/check", {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+    const result = await res.json();
+    if (!result.isAccountExists) {
+      handleData(values);
+    } else {
+      if (result.email) {
+        setApiErrors((prevApiErrors) => ({
+          ...prevApiErrors,
+          email: result.email,
+        }));
+      }
+      if (result.userName) {
+        setApiErrors((prevApiErrors) => ({
+          ...prevApiErrors,
+          userName: result.userName,
+        }));
+      }
+    }
+    setIsSaving(false);
   };
-
-  // useEffect(() => {
-  //   console.log(userData);
-  // }, [userData]);
 
   return (
     <Formik
-      // initialValues={data}
+      initialValues={data}
       validationSchema={schema}
+      enableReinitialize={true}
       onSubmit={async (values, { setSubmitting }) => {
+        setError("");
         if (values.isAgreedToTermsAndCondition.length < 1) {
           setError("You must agree to our terms and condition.");
         } else {
-          setError(null);
-          setTimeout(() => handleData(values), 500);
+          setTimeout(() => handleSubmitUserForm(values), 500);
         }
       }}
       validateOnChange={true}
@@ -68,13 +78,7 @@ const UserForm = ({ data, handleData, setUserData, toggleForms, apiErrors, isSav
                   <span className="required small">Public Username</span>
                 </label>
                 {/* Note:: To trigger error message add class "is-invalid" to the form tag */}
-                <Field
-                  name="userName"
-                  className="form-control"
-                  type="text"
-                  onChange={handleInputChange}
-                  value={data.userName}
-                />
+                <Field name="userName" className="form-control" type="text" />
                 {formik.errors.userName && formik.touched.userName ? (
                   <ErrorMessage
                     name="userName"
@@ -93,19 +97,12 @@ const UserForm = ({ data, handleData, setUserData, toggleForms, apiErrors, isSav
                   <span className="required small">Email Address</span>
                 </label>
                 {/* Note:: To trigger error message add class "is-invalid" to the form tag */}
-                <Field
-                  name="email"
-                  className="form-control"
-                  type="text"
-                  onChange={handleInputChange}
-                  value={data.email}
-                />
+                <Field name="email" className="form-control" type="text" />
                 {formik.errors.email && formik.touched.email ? (
                   <ErrorMessage
                     name="email"
                     component="small"
                     className="text-danger"
-                    onChange={handleInputChange}
                   />
                 ) : null}
                 {apiErrors.email && (

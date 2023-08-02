@@ -57,6 +57,7 @@ const ProjectForm = ({ data, handleData }) => {
     <Formik
       initialValues={data}
       validationSchema={schema}
+      enableReinitialize
       onSubmit={async (values, { setSubmitting }) => {
         setTimeout(() => handleData(values), 500);
       }}
