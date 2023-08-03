@@ -1,8 +1,6 @@
 "use client";
 
 import HeaderForm from '@/components/home/HeaderForm'
-import Navigation from '@/components/includes/Navigation';
-import Footer from '@/components/includes/Footer';
 
 import { useEffect, useContext } from 'react';
 
@@ -10,10 +8,6 @@ import { HandymanContext } from './context/handyman/store';
 
 const Home = () => {
   const background = 'https://cdn.vnoc.com/background/bg-handyman1.png';
-  const domain ='javapoint.com';
-  const fb_url = 'facebook.com';
-  const twitter_url = 'twitter.com';
-  const linkedin_url = 'linkedin.com';
 
   const { handymanConfigs, setHandymanConfigs } = useContext(HandymanContext);
 
@@ -33,7 +27,6 @@ const Home = () => {
 
   return (
     <>
-      <Navigation bgNavbar='tw-bg-[rgba(0,0,0,0.5)]' domain={domain} />
       <HeaderForm background={background} />
       <section className='tw-py-24 tw-bg-white'>
         <div className="container">
@@ -95,7 +88,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <Footer domain={domain} fb_url={fb_url} twitter_url={twitter_url} linkedin_url={linkedin_url} />
     </>
   )
 }
