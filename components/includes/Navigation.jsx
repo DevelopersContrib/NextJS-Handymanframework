@@ -12,7 +12,9 @@ const Navigation = ({ domain, bgNavbar }) => {
       className={`${bgNavbar}`}
     >
       <div className="container-fluid">
-        <Navbar.Brand href="#home">{domain}</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          {domain.charAt(0).toUpperCase() + domain.slice(1)}
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
