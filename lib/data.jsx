@@ -21,6 +21,16 @@ export async function getData() {
   return res.data;
 }
 
+export async function getTopsites() {
+  const domain = getDomain();
+  const url =
+    process.env.CONTRIB_API1 +
+    `domains/getTopsites?domain=${domain}&key=${process.env.CONTRIB_API_KEY}`;
+  const res = await axios.get(url);
+
+  return res.data;
+}
+
 export async function getProjectTypes() {
   try {
     const url = process.env.HANDYMAN_API + `getHandymanConfigs`;
