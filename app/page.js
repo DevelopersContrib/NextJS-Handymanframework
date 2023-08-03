@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <>
-      <Navigation bgNavbar='tw-bg-[rgba(0,0,0,0.5)]' />
+      <Navigation bgNavbar='tw-bg-[rgba(0,0,0,0.5)]' domain={domain} />
       <HeaderForm background={background} />
       <section className='tw-py-24 tw-bg-white'>
         <div className="container">

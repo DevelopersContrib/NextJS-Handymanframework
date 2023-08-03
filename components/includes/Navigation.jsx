@@ -3,7 +3,7 @@ import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-const Navigation = ({ bgNavbar }) => {
+const Navigation = ({ domain, bgNavbar }) => {
   return (
     <Navbar
       fixed="top"
@@ -12,7 +12,7 @@ const Navigation = ({ bgNavbar }) => {
       className={`${bgNavbar}`}
     >
       <div className="container-fluid">
-        <Navbar.Brand href="#home">Javapoint.com</Navbar.Brand>
+        <Navbar.Brand href="#home">{domain}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
