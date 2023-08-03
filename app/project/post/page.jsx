@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
 import { HandymanContext } from "@/app/context/handyman/store";
 
-const page = () => {
+const Page = () => {
   const background = "https://cdn.vnoc.com/background/bg-handyman1.png";
   const domain = "javapoint.com";
   const fb_url = "facebook.com";
@@ -20,22 +20,6 @@ const page = () => {
   const searchParams = useSearchParams();
   const { handymanConfigs } = useContext(HandymanContext);
 
-  // const [projectData, setProjectData] = useState({
-  //   projectTypeId: "65",
-  //   zip: "80001",
-  //   firstName: "Stephen",
-  //   lastName: "Catacte",
-  //   phoneNumber: "123-456-7890",
-  //   city: "New York City",
-  //   address: "New York City",
-  //   stateId: "35",
-  //   projectStartDate: "2-Weeks",
-  //   projectStatus: "Planning and Budgeting",
-  //   projectTimeFrame: "Timing is Flexible",
-  //   projectBudget: "$2500 to $5000",
-  //   projectDesc: "This is a test",
-  //   isProjectOwner: "1",
-  // });
   const [projectData, setProjectData] = useState({
     projectTypeId: searchParams.get("project-type-id")
       ? searchParams.get("project-type-id")
@@ -61,8 +45,6 @@ const page = () => {
   });
   const [form, setForm] = useState("project");
 
-  const prevProjectData = useRef();
-  const prevUserData = useRef();
   const [isSaving, setIsSaving] = useState(false);
 
   const handleProjectData = (values) => {
@@ -92,46 +74,12 @@ const page = () => {
     const result = await res.json();
 
     if (result.success) {
-      router.push("https://handyman.com/");
-      // alert("Saved!");
+      // router.push("https://handyman.com/");
+      alert("Saved!");
     }
-
-    console.log(result);
   };
 
-  // const checkIfAccountExists = async () => {
-  //   setIsSaving(true);
-  //   setApiErrors({ email: "", userName: "" });
-
-  //   const res = await fetch("/api/handyman/check", {
-  //     method: "POST",
-  //     body: JSON.stringify(userData),
-  //   });
-  //   const result = await res.json();
-
-  //   if (!result.isAccountExists) {
-  //     saveProject();
-  //   } else {
-  //     if (result.email) {
-  //       setApiErrors((prevApiErrors) => ({
-  //         ...prevApiErrors,
-  //         email: result.email,
-  //       }));
-  //     }
-  //     if (result.userName) {
-  //       setApiErrors((prevApiErrors) => ({
-  //         ...prevApiErrors,
-  //         userName: result.userName,
-  //       }));
-  //     }
-  //   }
-
-  //   setIsSaving(false);
-  // };
-
   useEffect(() => {
-    // prevProjectData.current = projectData;
-    // prevUserData.current = userData;
     if (handymanConfigs == null) {
       router.push("/");
     }
@@ -139,19 +87,6 @@ const page = () => {
     if (userData.userName && userData.email) {
       saveProject();
     }
-
-    // if (prevProjectData.current !== projectData && prevUserData !== userData) {
-    //   console.log("Updating values.");
-    //   checkIfAccountExists();
-    // } else {
-    //   console.log("prevProjectData.current", prevProjectData.current);
-    //   console.log("projectData", projectData);
-    //   console.log("prevUserData.current", prevUserData.current);
-    //   console.log("userData", userData);
-    // }
-
-    console.log(projectData);
-    console.log(userData);
   }, [projectData, userData]);
 
   return (
