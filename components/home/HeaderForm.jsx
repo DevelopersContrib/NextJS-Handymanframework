@@ -46,7 +46,19 @@ const HeaderForm = ({ background }) => {
     }
   };
 
-  useEffect(() => {}, []);
+  const callHandymanApi = async () => {
+    const res = await fetch("/api/handyman", {
+      method: "GET",
+    });
+
+    const result = await res.json();
+
+    setHandymanConfigs(result.data);
+  };
+
+  useEffect(() => {
+    callHandymanApi();
+  }, []);
 
   return (
     <>
