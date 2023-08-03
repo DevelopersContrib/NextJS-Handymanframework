@@ -29,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     callHandymanApi()
-  },[])
+  },[handymanConfigs])
 
   return (
     <>
