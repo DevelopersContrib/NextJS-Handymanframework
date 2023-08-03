@@ -6,7 +6,7 @@ import ProjectForm from "@/components/project/ProjectForm";
 import UserForm from "@/components/project/UserForm";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HandymanContext } from "@/app/context/handyman/store";
 
 const Page = () => {
@@ -74,8 +74,8 @@ const Page = () => {
     const result = await res.json();
 
     if (result.success) {
-      // router.push("https://handyman.com/");
-      alert("Saved!");
+      router.push("https://handyman.com/");
+      // alert("Saved!");
     }
   };
 
