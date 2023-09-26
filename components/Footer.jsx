@@ -70,14 +70,6 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/invest"
-                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
-                    >
-                      invest
-                    </Link>
-                  </li>
-                  <li>
                     <a
                       href={contri_link}
                       target="_blank"
@@ -85,6 +77,38 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                     >
                       contribute
                     </a>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Build
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Invest
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Manage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Monetize
+                    </Link>
                   </li>
                 </ul>
               </div>
