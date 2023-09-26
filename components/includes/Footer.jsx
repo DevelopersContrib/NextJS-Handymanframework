@@ -61,6 +61,38 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       developer
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Build
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Invest
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Manage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`https://domaindirectory.com/servicepage/?domain=${domain}`}
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      Monetize
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className="col-xl-3">
