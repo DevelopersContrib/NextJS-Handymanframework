@@ -4,8 +4,7 @@ import Link from "next/link";
 
 export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
   const contri_link = "https://www.contrib.com/to/" + domain;
-  const footer_text =
-    "Join our exclusive community of like minded people on " + domain + ".";
+  const footer_text = "Join our exclusive community of like minded people on " + domain + ".";
   return (
     <>
       <footer className="tw-text-white">
@@ -14,9 +13,7 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
             <div className="row gy-3">
               <div className="col-xl-3">
                 <h3 className="tw-uppercase tw-text-2xl">{domain}</h3>
-                <div className="tw-no-underline text-secondary tw-inline-block">
-                  {footer_text}
-                </div>
+                <div className="tw-no-underline text-secondary tw-inline-block">{footer_text}</div>
               </div>
               <div className="col-xl-3">
                 <h3 className="tw-uppercase tw-text-2xl">get started</h3>
@@ -43,6 +40,14 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
                       className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
                     >
                       referral
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/blog"
+                      className="tw-no-underline text-secondary tw-inline-block tw-capitalize"
+                    >
+                      blog
                     </Link>
                   </li>
                   <li>
@@ -198,9 +203,8 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
           <div className="container">
             <div className="row">
               <div className="col-xl-6">
-                &copy; {new Date().getFullYear()}{" "}
-                <span className="tw-capitalize">{domain}</span>. All Rights
-                Reserved.
+                &copy; {new Date().getFullYear()} <span className="tw-capitalize">{domain}</span>.
+                All Rights Reserved.
               </div>
               <div className="col-xl-6 lg:tw-text-right">
                 <ul className="mb-0 list-inline">

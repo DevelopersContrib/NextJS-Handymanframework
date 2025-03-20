@@ -12,25 +12,44 @@ const Navigation = ({ domain, bgNavbar }) => {
       className={`${bgNavbar}`}
     >
       <div className="container-fluid">
-        <Navbar.Brand href="#home">
-          {domain.charAt(0).toUpperCase() + domain.slice(1)}
-        </Navbar.Brand>
+        <Navbar.Brand href="#home">{domain.charAt(0).toUpperCase() + domain.slice(1)}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link className="nav-link" href="/">
+            <Link
+              className="nav-link"
+              href="/"
+            >
               Home
             </Link>
-            <Link className="nav-link" href="/contact">
+            <Link
+              className="nav-link"
+              href="/blog"
+            >
+              Blog
+            </Link>
+            <Link
+              className="nav-link"
+              href="/contact"
+            >
               Contact Us
             </Link>
-            <Link className="nav-link" href="/referral">
+            <Link
+              className="nav-link"
+              href="/referral"
+            >
               Referrals
             </Link>
-            <Link className="nav-link" href="/apps">
+            <Link
+              className="nav-link"
+              href="/apps"
+            >
               Apps
             </Link>
-            <Link className="nav-link" href="/project/post">
+            <Link
+              className="nav-link"
+              href="/project/post"
+            >
               Projects
             </Link>
           </Nav>
