@@ -2,11 +2,13 @@
 import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import NewsTicker from "@/components/NewsTicker";
 
 const Navigation = ({ domain, bgNavbar }) => {
   return (
+    <>
+    <NewsTicker />
     <Navbar
-      fixed="top"
       expand="lg"
       data-bs-theme="dark"
       className={`${bgNavbar}`}
@@ -56,6 +58,7 @@ const Navigation = ({ domain, bgNavbar }) => {
         </Navbar.Collapse>
       </div>
     </Navbar>
+    </>    
   );
 };
 

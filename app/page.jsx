@@ -3,13 +3,14 @@ import TopDomains from "@/components/TopDomains";
 import BlogList from "@/modules/blog/BlogList";
 
 import { getTopsites } from "@/lib/data";
+import CTABanner from "@/components/CTABanner";
 
 const Home = async () => {
   const background = "https://cdn.vnoc.com/background/bg-handyman1.png";
   const domains = await getTopsites();
 
   return (
-    <>
+    <>      
       <HeaderForm background={background} />
       <section className="tw-py-24 tw-bg-white">
         <div className="container">
@@ -100,6 +101,9 @@ const Home = async () => {
         <div className="container">
           <BlogList />
         </div>
+      </section>
+      <section>
+        <CTABanner />
       </section>
     </>
   );

@@ -1,4 +1,5 @@
 import './globals.css'
+import './custom.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navigation from "@/components/includes/Navigation";
@@ -9,13 +10,16 @@ import { getData,getDomain } from '@/lib/data'
 
 export async function generateMetadata() {
   const c = await getData();
+  const data = c?.data || {};
 
-	return {
-		title: c.data.title===''?'Welcome to '+c.data.domainName:c.data.title,
-		description: c.data.description,
-    keywords: c.data.keywords,
-    author: c.data.author
-	}
+  return {
+    title: data.title?.trim() === ''
+      ? `Welcome to ${data.domainName || 'our site'}`
+      : data.title || 'Welcome',
+    description: data.description || '',
+    keywords: data.keywords || '',
+    author: data.author || '',
+  };
 }
 
 export default function RootLayout({ children }) {
@@ -26,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navigation bgNavbar="tw-bg-[rgba(0,0,0,0.5)]" domain={domain} />
+        <Navigation bgNavbar="tw-bg-[#111111]" domain={domain} />
         <HandymanProvider>
           {children}
         </HandymanProvider>
