@@ -45,11 +45,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="tw-bg-[#E7E7E7]">
-        {/* your CTA tiles here */}
-      </section>
+      </section>    
 
       <section>
         <div className="container">
