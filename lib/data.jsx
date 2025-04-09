@@ -26,7 +26,7 @@ export async function getData() {
     return res.data;
   } catch (error) {
     console.error("[getData] Failed to fetch domain config:", error.message);
-    return { data: { domainName: "Handyman", logo: null } }; // fallback
+    return { data: { domainName: "Handyman", logo: null } };
   }
 }
 

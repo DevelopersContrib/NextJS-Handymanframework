@@ -16,16 +16,18 @@ const Navigation = ({ logo, domain, bgNavbar }) => {
       className={`${bgNavbar}`}
     >
       <div className="container-fluid">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="#home" style={{ width: 120 }}>
         {logo ? (
-          <Image
-            src={logo}
-            alt={domain}
-            width={120}
-            height={40}
-            priority
-            unoptimized
-          />
+          <div style={{ position: "relative", width: "100%", height: 40 }}>
+            <Image
+              src={logo}
+              alt={domain}
+              fill
+              priority
+              style={{ objectFit: "contain" }}
+              unoptimized
+            />
+          </div>
         ) : (
           domain.charAt(0).toUpperCase() + domain.slice(1)
         )}
