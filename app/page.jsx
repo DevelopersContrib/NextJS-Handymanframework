@@ -25,7 +25,7 @@ export default async function Home() {
           <div className="row">
             <div className="col-xl-12 text-center">
               <h1 className="tw-text-5xl tw-font-medium tw-mb-4">
-                Acquired by {capitalizedDomain}.com
+                Acquired by Handyman.com
               </h1>
               <h5 className="tw-mb-4">
                 Get Matched to a Screened Professional Handyman
