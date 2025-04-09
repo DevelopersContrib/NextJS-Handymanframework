@@ -1,12 +1,12 @@
-import './globals.css'
-import './custom.css'
+import './globals.css';
+import './custom.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navigation from "@/components/includes/Navigation";
 import Footer from "@/components/includes/Footer";
 
 import { HandymanProvider } from './context/handyman/store';
-import { getData,getDomain } from '@/lib/data'
+import { getData } from '@/lib/data';
 
 export async function generateMetadata() {
   const c = await getData();
@@ -22,15 +22,19 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({ children }) {
-  const domain = getDomain()
+export default async function RootLayout({ children }) {
+  const data = await getData();
+  const domain = data?.data?.domainName || 'Handyman';
+  const logo = data?.data?.logo || null;
+
   const fb_url = "facebook.com";
   const twitter_url = "twitter.com";
   const linkedin_url = "linkedin.com";
+
   return (
     <html lang="en">
       <body>
-        <Navigation bgNavbar="tw-bg-[#111111]" domain={domain} />
+        <Navigation bgNavbar="tw-bg-[#111111]" domain={domain} logo={logo} />
         <HandymanProvider>
           {children}
         </HandymanProvider>
@@ -42,5 +46,5 @@ export default function RootLayout({ children }) {
         />
       </body>
     </html>
-  )
+  );
 }

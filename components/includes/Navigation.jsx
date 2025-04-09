@@ -3,8 +3,10 @@ import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NewsTicker from "@/components/NewsTicker";
+import Image from "next/image";
 
-const Navigation = ({ domain, bgNavbar }) => {
+
+const Navigation = ({ logo, domain, bgNavbar }) => {
   return (
     <>
     <NewsTicker />
@@ -14,7 +16,20 @@ const Navigation = ({ domain, bgNavbar }) => {
       className={`${bgNavbar}`}
     >
       <div className="container-fluid">
-        <Navbar.Brand href="#home">{domain.charAt(0).toUpperCase() + domain.slice(1)}</Navbar.Brand>
+      <Navbar.Brand href="#home">
+        {logo ? (
+          <Image
+            src={logo}
+            alt={domain}
+            width={120}
+            height={40}
+            priority
+            unoptimized
+          />
+        ) : (
+          domain.charAt(0).toUpperCase() + domain.slice(1)
+        )}
+      </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
