@@ -1,9 +1,10 @@
-import { headers } from 'next/headers';
-import { getTopsites } from "@/lib/data";
-import HeaderForm from "@/components/home/HeaderForm";
-import TopDomains from "@/components/TopDomains";
-import BlogList from "@/modules/blog/BlogList";
 import CTABanner from "@/components/CTABanner";
+import HeaderForm from "@/components/home/HeaderForm";
+import Notification from "@/components/notification/Notification";
+import TopDomains from "@/components/TopDomains";
+import { getTopsites } from "@/lib/data";
+import BlogList from "@/modules/blog/BlogList";
+import { headers } from 'next/headers';
 
 export default async function Home() {
   const background = "https://cdn.vnoc.com/background/bg-handyman1.png";
@@ -61,6 +62,7 @@ export default async function Home() {
       <section>
         <CTABanner />
       </section>
+      <Notification />
     </>
   );
 }

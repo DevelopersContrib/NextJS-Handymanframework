@@ -9,6 +9,8 @@ const nextConfig = {
       "contrib.com",
       "vnoclogos.s3-us-west-1.amazonaws.com",
       "vbot-images.s3.us-east-1.amazonaws.com",
+      "vnocimages.s3.amazonaws.com",
+      "randomuser.me",
     ],
   },
   env: {
