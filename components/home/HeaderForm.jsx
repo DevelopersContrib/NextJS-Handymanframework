@@ -37,12 +37,10 @@ const HeaderForm = ({ background }) => {
 
   const handleClickGo = () => {
     if (option === 2) {
-      console.log("im here");
+      // console.log("im here");
       router.push("https://handyman.com/");
     } else {
-      router.push(
-        "/project/post?project-type-id=" + data.projectType + "&zip=" + data.zip
-      );
+      router.push("/project/post?project-type-id=" + data.projectType + "&zip=" + data.zip);
     }
   };
 
@@ -84,7 +82,10 @@ const HeaderForm = ({ background }) => {
                       <option value="0"></option>
                       {handymanConfigs &&
                         handymanConfigs.projectTypes.map((p) => (
-                          <option key={p.projectTypeId} value={p.projectTypeId}>
+                          <option
+                            key={p.projectTypeId}
+                            value={p.projectTypeId}
+                          >
                             {p.name}
                           </option>
                         ))}
@@ -97,9 +98,7 @@ const HeaderForm = ({ background }) => {
                     />
                     <button
                       className={
-                        handymanConfigs === null
-                          ? "btn btn-primary disabled"
-                          : "btn btn-primary"
+                        handymanConfigs === null ? "btn btn-primary disabled" : "btn btn-primary"
                       }
                       type="button"
                       onClick={handleClickGo}

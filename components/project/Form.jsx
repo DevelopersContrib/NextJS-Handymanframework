@@ -13,9 +13,7 @@ const Form = () => {
   const { handymanConfigs } = useContext(HandymanContext);
 
   const [projectData, setProjectData] = useState({
-    projectTypeId: searchParams.get("project-type-id")
-      ? searchParams.get("project-type-id")
-      : "",
+    projectTypeId: searchParams.get("project-type-id") ? searchParams.get("project-type-id") : "",
     zip: searchParams.get("zip") ? searchParams.get("zip") : "",
     firstName: "",
     lastName: "",
@@ -56,7 +54,7 @@ const Form = () => {
   const saveProject = async () => {
     const apiData = Object.assign(userData, projectData);
 
-    console.log("apiData", apiData);
+    // console.log("apiData", apiData);
 
     const res = await fetch("/api/handyman/save", {
       method: "POST",
@@ -126,13 +124,11 @@ const Form = () => {
               <div className="alert alert-info">
                 <strong>Dear Clients,</strong> <br />
                 <p>
-                  First you will need to fill out this form, describing what
-                  needs to be done. Once your Project is approved and posted on
-                  the site, relevant Business people will be alerted.
-                  You&apos;ll receive email alerts when your Project starts
-                  getting interest and you&apos;ll then compare Contractor by
-                  reviewing profiles, work history, qualifications and customer
-                  reviews.
+                  First you will need to fill out this form, describing what needs to be done. Once
+                  your Project is approved and posted on the site, relevant Business people will be
+                  alerted. You&apos;ll receive email alerts when your Project starts getting
+                  interest and you&apos;ll then compare Contractor by reviewing profiles, work
+                  history, qualifications and customer reviews.
                 </p>
               </div>
             </div>
