@@ -7,6 +7,7 @@ import Footer from "@/components/includes/Footer";
 
 import { HandymanProvider } from './context/handyman/store';
 import { getData } from '@/lib/data';
+import First100FoundersModalWrapper from "@/components/First100FoundersModalWrapper";
 
 export const dynamic = 'force-dynamic';
 
@@ -67,6 +68,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <First100FoundersModalWrapper />
         <Navigation bgNavbar="tw-bg-[#111111]" domain={domain} logo={logo} />
         <HandymanProvider>
           {children}
