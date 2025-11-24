@@ -27,7 +27,7 @@ import { X, Sparkles, Rocket, Crown, Zap, ArrowRight, Clock, CheckCircle } from 
  * @param {boolean} [props.testMode=false] - Test mode - shows immediately and ignores sessionStorage
  */
 export const First100FoundersModal = ({
-  targetUrl = '/first100founders',
+  targetUrl = 'https://www.ventureos.com/first100founders',
   delay = 15000,
   excludedPaths = ['/first100founders', '/admin'],
   sessionKey = 'first100founders_modal_shown',
@@ -165,13 +165,11 @@ export const First100FoundersModal = ({
     if (onCTAClick) {
       onCTAClick();
     }
-    
     if (onNavigate) {
       onNavigate(targetUrl);
     } else if (typeof window !== 'undefined') {
-      window.location.href = targetUrl;
+      window.open(targetUrl, '_blank');
     }
-    
     setIsVisible(false);
     setHasShown(true);
   };
@@ -179,25 +177,25 @@ export const First100FoundersModal = ({
   // Default benefits
   const defaultBenefits = benefits || [
     { 
-      icon: <Rocket className="w-8 h-8" />, 
+      icon: <Rocket className="tw-w-8 tw-h-8 tw-text-blue-300" />, 
       text: 'Full platform access on January 15, 2026', 
       color: 'text-blue-300', 
       bg: 'from-blue-500/20 to-cyan-500/20' 
     },
     { 
-      icon: <Zap className="w-8 h-8" />, 
+      icon: <Zap className="tw-w-8 tw-h-8 tw-text-purple-300" />, 
       text: 'Auto-built contractor website with ALL AI agents', 
       color: 'text-purple-300', 
       bg: 'from-purple-500/20 to-pink-500/20' 
     },
     { 
-      icon: <Crown className="w-8 h-8" />, 
+      icon: <Crown className="tw-w-8 tw-h-8 tw-text-yellow-300" />, 
       text: 'Early access to DomainFund Secret Auction', 
       color: 'text-yellow-300', 
       bg: 'from-yellow-500/20 to-orange-500/20' 
     },
     { 
-      icon: <Sparkles className="w-8 h-8" />, 
+      icon: <Sparkles className="tw-w-8 tw-h-8 tw-text-pink-300" />, 
       text: 'Founders Badge & exclusive community access', 
       color: 'text-pink-300', 
       bg: 'from-pink-500/20 to-red-500/20' 

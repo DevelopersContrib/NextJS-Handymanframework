@@ -9,8 +9,7 @@ export default function First100FoundersModalWrapper() {
 
   return (
     <First100FoundersModal 
-      targetUrl="/first100founders"
-      onNavigate={(url) => router.push(url)}
+      targetUrl="https://www.ventureos.com/first100founders"
       getCurrentPath={() => pathname}
       excludedPaths={['/first100founders', '/admin', '/api']}
     />
