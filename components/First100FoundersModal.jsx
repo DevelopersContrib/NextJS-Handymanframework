@@ -283,6 +283,41 @@ export const First100FoundersModal = ({
       }}
       data-testid="first100founders-modal"
     >
+      {/* Decorative overlays and blobs - moved outside content container */}
+      <div
+        className="absolute inset-0"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to right, rgba(234, 179, 8, 0.2), rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2))',
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            background: 'linear-gradient(to bottom right, rgba(234, 179, 8, 0.3), rgba(249, 115, 22, 0.3))',
+          }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            background: 'linear-gradient(to bottom right, rgba(168, 85, 247, 0.3), rgba(59, 130, 246, 0.3))',
+          }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            background: 'linear-gradient(to bottom right, rgba(236, 72, 153, 0.2), rgba(239, 68, 68, 0.2))',
+          }}
+        ></div>
+      </div>
       {/* Content Container - scrollable only if content overflows */}
       <div
         className="flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 overflow-y-auto"
@@ -295,41 +330,6 @@ export const First100FoundersModal = ({
           maxHeight: '100vh',
         }}
       >
-        {/* Decorative overlays and blobs */}
-        <div
-          className="absolute inset-0"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(to right, rgba(234, 179, 8, 0.2), rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2))',
-            zIndex: 1,
-            pointerEvents: 'none',
-          }}
-        >
-          <div
-            className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
-            style={{
-              background: 'linear-gradient(to bottom right, rgba(234, 179, 8, 0.3), rgba(249, 115, 22, 0.3))',
-            }}
-          ></div>
-          <div
-            className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl"
-            style={{
-              background: 'linear-gradient(to bottom right, rgba(168, 85, 247, 0.3), rgba(59, 130, 246, 0.3))',
-            }}
-          ></div>
-          <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl"
-            style={{
-              background: 'linear-gradient(to bottom right, rgba(236, 72, 153, 0.2), rgba(239, 68, 68, 0.2))',
-            }}
-          ></div>
-        </div>
         {/* Close Button */}
         <button
           onClick={handleClose}
