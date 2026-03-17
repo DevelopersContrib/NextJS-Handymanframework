@@ -2,8 +2,15 @@ import './globals.css';
 import './custom.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { Inter } from 'next/font/google';
 import Navigation from "@/components/includes/Navigation";
 import Footer from "@/components/includes/Footer";
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 import { HandymanProvider } from './context/handyman/store';
 import { getData } from '@/lib/data';
@@ -66,10 +73,10 @@ export default async function RootLayout({ children }) {
   const linkedin_url = "linkedin.com";
 
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <body>
         <First100FoundersModalWrapper />
-        <Navigation bgNavbar="tw-bg-[#111111]" domain={domain} logo={logo} />
+        <Navigation bgNavbar="tw-bg-zinc-900" domain={domain} logo={logo} />
         <HandymanProvider>
           {children}
         </HandymanProvider>

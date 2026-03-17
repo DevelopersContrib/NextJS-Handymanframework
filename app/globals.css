@@ -1,11 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap');
 
 @tailwind components;
 @tailwind utilities;
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body{
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: var(--font-inter), sans-serif !important;
 }
 
 h1,.h1,
@@ -14,7 +23,7 @@ h3,.h3,
 h4,.h4,
 h5,.h5,
 h6,.h6{
-  font-family: 'Poppins', sans-serif !important;
+  font-family: var(--font-inter), sans-serif !important;
 }
 
 .custom-tab-nav li:last-child{

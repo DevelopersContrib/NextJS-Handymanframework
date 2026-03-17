@@ -8,7 +8,7 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
   return (
     <>
       <footer className="tw-text-white">
-        <section className="tw-bg-[#191919] tw-py-14">
+        <section className="tw-bg-zinc-900 tw-py-14">
           <div className="container">
             <div className="row gy-3">
               <div className="col-xl-3">
@@ -199,7 +199,7 @@ export default function Footer({ domain, twitter_url, fb_url, linkedin_url }) {
             </div>
           </div>
         </section>
-        <section className="tw-bg-[#111] tw-py-6">
+        <section className="tw-bg-black tw-py-6">
           <div className="container">
             <div className="row">
               <div className="col-xl-6">
